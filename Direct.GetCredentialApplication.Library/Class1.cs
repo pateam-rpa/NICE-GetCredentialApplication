@@ -28,16 +28,14 @@ namespace Direct.GetCredentialApplication.Library
 			try
 			{
 				CredentialManager manager = new CredentialManager();
-				//DirectCollection<KeyValuePair> keyValuePairs = new DirectCollection<KeyValuePair>();
 				IUserInfoServices userInfoServices = (IUserInfoServices)((IDirectFramework)AppDomain.CurrentDomain.GetData("Framework"))["UserInfo"];
 			
 				if (!userInfoServices.IsLoggedToServer)
 				{
 					if (logArchitect.IsDebugEnabled) { logArchitect.Debug("Direct.GetCredentialApplication.Library - User not connected to Server "); }
-					return 0; 
+					return -1; 
 				}
 
-			
 				// applications endpoint only available in designer config, to support replacing client endpoint
 				Dictionary<int, ApplicationInfo> mapApplications = manager.GetApplicationsList(CCMConfigurator.ConfigManager.CCMCredentialsUrl.Replace("credentials/", "applications"));
 				if (logArchitect.IsDebugEnabled) { logArchitect.Debug("Direct.GetCredentialApplication.Library - Looking for Application name"); }
@@ -48,22 +46,15 @@ namespace Direct.GetCredentialApplication.Library
 					{
 						return item.Value.id;
 					}
-					//KeyValuePair _keyValue = new KeyValuePair
-					//{
-					//	Key = item.Value.id.ToString(),
-					//	Value = item.Value.name
-					//};
-				
-					//keyValuePairs.Add(_keyValue);
 				}
-					//return keyValuePairs;
-					if (logArchitect.IsDebugEnabled) { logArchitect.Debug("Direct.GetCredentialApplication.Library - Application: " + applicationname + " not found"); }
-					return 0;
+		
+				if (logArchitect.IsDebugEnabled) { logArchitect.Debug("Direct.GetCredentialApplication.Library - Application: " + applicationname + " not found"); }
+				return -1;
 			}
 			catch (Exception e)
 			{
 				logArchitect.Error("Direct.GetCredentialApplication.Library - Get Credential Applications Exception", e);
-				return 0;
+				return -1;
 			}
 		}
 	}
