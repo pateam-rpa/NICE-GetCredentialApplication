@@ -31,7 +31,7 @@ using System.Runtime.InteropServices;
 //      Revision
 //
 // You can specify all the values or you can default the Build and Revision Numbers
-// by using the '*' as shown below:
+// by using the '*' as shown below:C:\Users\martijn\Documents\GitHub\NICE-GetCredentialApplication\Direct.GetCredentialApplication.Library\Properties\AssemblyInfo.cs
 // [assembly: AssemblyVersion("1.0.*")]
-[assembly: AssemblyVersion("1.0.0.0")]
-[assembly: AssemblyFileVersion("1.0.0.0")]
+[assembly: AssemblyVersion("1.0.0.2")]
+[assembly: AssemblyFileVersion("1.0.0.2")]

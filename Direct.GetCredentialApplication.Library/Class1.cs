@@ -37,8 +37,9 @@ namespace Direct.GetCredentialApplication.Library
 					return 0; 
 				}
 
-
-				Dictionary<int, ApplicationInfo> mapApplications = manager.GetApplicationsList(ServerConfiguration.ConfigManager.GetCurrentEnvironment().CCMConfiguration.URL);
+			
+				// applications endpoint only available in designer config, to support replacing client endpoint
+				Dictionary<int, ApplicationInfo> mapApplications = manager.GetApplicationsList(CCMConfigurator.ConfigManager.CCMCredentialsUrl.Replace("credentials/", "applications"));
 				if (logArchitect.IsDebugEnabled) { logArchitect.Debug("Direct.GetCredentialApplication.Library - Looking for Application name"); }
 				foreach (var item in mapApplications)
 				{
